@@ -17,10 +17,10 @@
   </li>
 </ul>
 
-<h2>Notes</h2>
+<h2>Useful</h2>
 <ul>
-  <li>The executable will be ran inside <code>main.py</code>.</li>
-  <li>There are a few options you can tweak inside <code>config.py</code>.</li>
+  <li>The executable will be ran inside <code>main.py</code></li>
+  <li>There are a few options you can tweak inside <code>config.py</code></li>
 </ul>
 
 <h2>License</h2>
