@@ -2,7 +2,7 @@ import subprocess
 from math import sin
 from config import *
 
-def generate_frame(phase: int):
+def generate_frame(phase):
     frame = [[" "]*WIDTH for _ in range(HEIGHT)]
     char_count = len(CHARS) - 1
 
@@ -14,10 +14,10 @@ def generate_frame(phase: int):
             char_index = max(0, min(char_count, int(frac * char_count)))
             frame[y][x] = CHARS[char_index]
 
-    return "\n".join("".join(row) for row in frame) + "\n---\n"
+    return "".join("".join(row) + "\n" for row in frame) + "---\n"
 
 def main():
-    proc = subprocess.Popen(["./render.exe"], stdin=subprocess.PIPE, text=True)
+    proc = subprocess.Popen(["./render.exe"], stdin=subprocess.PIPE, text=True, bufsize=1)
     phase = 0
     try:
         while True:
