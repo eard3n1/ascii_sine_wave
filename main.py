@@ -1,20 +1,17 @@
 import subprocess
-import math
+from math import sin
 from config import *
 
 def generate_frame(phase: int):
     frame = [[" "]*WIDTH for _ in range(HEIGHT)]
     char_count = len(CHARS) - 1
-    two_amplitude = 2 * AMPLITUDE
 
     for x in range(WIDTH):
-        y_float = AMPLITUDE * math.sin(FREQUENCY * (x + phase)) + OFFSET
-        y = int(math.floor(y_float))
+        y = int(AMPLITUDE * sin(FREQUENCY * (x + phase)) + OFFSET)
         
         if 0 <= y < HEIGHT:
-            frac = (y_float - (OFFSET - AMPLITUDE)) / two_amplitude
-            char_index = int(frac * char_count)
-            char_index = max(0, min(char_count, char_index))
+            frac = (y - (OFFSET - AMPLITUDE)) / (2 * AMPLITUDE)
+            char_index = max(0, min(char_count, int(frac * char_count)))
             frame[y][x] = CHARS[char_index]
 
     return "\n".join("".join(row) for row in frame) + "\n---\n"
@@ -22,7 +19,6 @@ def generate_frame(phase: int):
 def main():
     proc = subprocess.Popen(["./render.exe"], stdin=subprocess.PIPE, text=True)
     phase = 0
-
     try:
         while True:
             frame_str = generate_frame(phase)

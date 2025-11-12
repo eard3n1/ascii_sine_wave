@@ -1,4 +1,4 @@
-WIDTH  : int = 100
+WIDTH  : int = 130
 HEIGHT : int = 30
 CHARS  : str = "s~i-n=e*w/a\\v,e"
 
